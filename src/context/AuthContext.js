@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   // Ensure API_BASE always ends with /api (no double or missing /api)
-  let apiBase = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5050';
+  let apiBase = process.env.REACT_APP_API_BASE_URL;
   if (!apiBase.endsWith('/api')) {
     apiBase = apiBase.replace(/\/+$/, '') + '/api';
   }
