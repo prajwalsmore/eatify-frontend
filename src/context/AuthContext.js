@@ -75,7 +75,7 @@ export const AuthProvider = ({ children }) => {
     dispatch({ type: 'SET_LOADING', payload: true });
     
     try {
-      const response = await fetch(`${API_BASE}/auth/login`, {
+      const response = await fetch(`${API_BASE}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
