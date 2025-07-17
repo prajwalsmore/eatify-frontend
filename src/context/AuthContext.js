@@ -64,18 +64,14 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  // Ensure API_BASE always ends with /api (no double or missing /api)
-  let apiBase = process.env.REACT_APP_API_BASE_URL;
-  if (!apiBase.endsWith('/api')) {
-    apiBase = apiBase.replace(/\/+$/, '') + '/api';
-  }
-  const API_BASE = apiBase;
+  // Use API_BASE without automatically appending /api
+  const API_BASE = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5050';
 
   const login = async (email, password) => {
     dispatch({ type: 'SET_LOADING', payload: true });
     
     try {
-      const response = await fetch(`${API_BASE}/auth/login`, {
+      const response = await fetch(`${API_BASE}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -109,7 +105,7 @@ export const AuthProvider = ({ children }) => {
     dispatch({ type: 'SET_LOADING', payload: true });
     
     try {
-      const response = await fetch(`${API_BASE}/auth/register`, {
+      const response = await fetch(`${API_BASE}/api/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
